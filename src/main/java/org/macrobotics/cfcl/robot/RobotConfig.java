@@ -37,9 +37,6 @@ public abstract class RobotConfig {
      */
     public void init() {
         addModules();
-        modules.forEach(Module::init);
-        behaviors.forEach(b -> {
-        });
     }
 
     /**
