@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * A class representing the robot configuration - the set of modules and behaviors that make up a
@@ -24,10 +25,11 @@ public abstract class RobotConfig {
     /**
      * Adds the required hardware modules to the robot.
      *
-     * Subclasses should override this to define the modules they want to load. Adding modules
-     * anywhere else will probably break stuff, so don't.
+     * Subclasses should override this to define the modules they want to load.
      */
-    public abstract void addModules();
+    public abstract void addModules(Collection<Module> moduleList);
+
+    public abstract void addBehaviours(Collection<Behavior> behaviorList);
 
     /**
      * Initializes the robot and sets up modules/behaviors.
@@ -36,7 +38,8 @@ public abstract class RobotConfig {
      * in Bad Stuff. Don't do it.
      */
     public void init() {
-        addModules();
+        addModules(this.modules);
+        addBehaviours(this.behaviors);
     }
 
     /**
@@ -71,24 +74,6 @@ public abstract class RobotConfig {
         } catch (ClassCastException cce) {
             return null;
         }
-    }
-
-    /**
-     * Used by subclasses to add modules to themselves.
-     *
-     * @param mod The module to add.
-     */
-    protected void addModule(@NotNull Module mod) {
-        modules.add(mod);
-    }
-
-    /**
-     * Used by subclasses to add behaviors to themselves.
-     *
-     * @param bhv The behavior to add.
-     */
-    protected void addBehavior(@NotNull Behavior bhv) {
-        behaviors.add(bhv);
     }
 
     public HardwareMap getHardwareMap() {

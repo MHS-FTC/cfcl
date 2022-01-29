@@ -1,4 +1,4 @@
-package org.macrobotics.cfcl.module;
+package org.macrobotics.cfcl.robot.module;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 

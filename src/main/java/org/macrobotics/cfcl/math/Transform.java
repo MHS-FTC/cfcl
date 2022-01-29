@@ -2,6 +2,9 @@ package org.macrobotics.cfcl.math;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * A class for describing robot movements as an x and y offset, as well as a theta rotation.
+ */
 public class Transform {
     public Vector2 offset;
     public double theta;
@@ -24,7 +27,7 @@ public class Transform {
         theta = 0;
     }
 
-    public Transform apply(@NotNull Transform other) {
+    public @NotNull Transform apply(@NotNull Transform other) {
         Vector2 t = offset.rotate(other.offset.angle());
         return new Transform(offset.add(t), theta + other.theta);
     }

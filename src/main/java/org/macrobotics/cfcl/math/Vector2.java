@@ -2,6 +2,10 @@ package org.macrobotics.cfcl.math;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * A vector with two components - x and y. Used in this library for describing field positions and
+ * robot movement.
+ */
 public class Vector2 {
 
     public double x;
@@ -22,6 +26,9 @@ public class Vector2 {
         this.y = y;
     }
 
+    /**
+     * Creates a zero vector.
+     */
     public Vector2() {
         this(0, 0);
     }
@@ -43,6 +50,10 @@ public class Vector2 {
         return new Vector2(x / l, y / l);
     }
 
+    /**
+     * Computes the angle of this vector from the
+     * @return The angle in radians, in the range [-pi, pi].
+     */
     public double angle() {
         return Math.atan2(y, x);
     }
